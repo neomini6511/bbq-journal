@@ -12,7 +12,10 @@ export async function POST(request: NextRequest) {
 
   const { password } = await request.json();
 
-  if (password === PASSWORD) {
+  const trimmedPassword = password.trim();
+  const expectedPassword = PASSWORD.trim();
+
+  if (trimmedPassword === expectedPassword) {
     const response = NextResponse.json({ success: true });
     // Set cookie that lasts 7 days
     response.cookies.set('bbq-journal-auth', '1', {
