@@ -18,6 +18,16 @@ A mobile-first recipe and cook log journal built with Next.js 16 (App Router). T
 - **Custom CSS** via `src/app/globals.css` — no Tailwind dependency at runtime
 - **`next/image`** — automatic optimization for all photos
 
+## Agent Skill
+
+For OpenClaw agents, a skill exists to guide real‑time BBQ cook logging and journal updates. It covers:
+
+- Capturing timeline events, photos, and notes during a live cook.
+- Transforming the raw log into structured recipe and cook‑log entries.
+- Updating the data file and deploying the site.
+
+The skill is located at `~/.openclaw/workspace/skills/bbq-journal-cook-log/`. Use it when M is documenting a BBQ cook and wants a polished archival report later.
+
 ---
 
 ## How to add a new recipe
