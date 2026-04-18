@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 function LoginFormInner() {
@@ -9,6 +9,14 @@ function LoginFormInner() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    // Focus input on mount for better mobile UX
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -36,47 +44,70 @@ function LoginFormInner() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="max-w-sm w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-            BBQ Journal
-          </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
-            Enter the password to view the site
-          </p>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="password" className="sr-only">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
+    <div className="login-page">
+      <div className="login-background" />
+      <div className="login-container">
+        <div className="login-card">
+          <div className="login-header">
+            <div className="login-icon">🔥</div>
+            <h1 className="login-title">BBQ Journal</h1>
+            <p className="login-subtitle">Enter the password to continue</p>
           </div>
 
-          {error && (
-            <div className="text-red-600 text-sm text-center">{error}</div>
-          )}
+          <form onSubmit={handleSubmit} className="login-form">
+            <div className="input-wrapper">
+              <label htmlFor="password" className="input-label">
+                Password
+              </label>
+              <input
+                ref={inputRef}
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="password-input"
+                placeholder="Enter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={loading}
+                autoComplete="current-password"
+              />
+            </div>
 
-          <div>
+            {error && (
+              <div className="error-message">
+                <svg className="error-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                <span>{error}</span>
+              </div>
+            )}
+
             <button
               type="submit"
               disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
+              className="submit-button"
             >
-              {loading ? 'Checking...' : 'Enter'}
+              {loading ? (
+                <>
+                  <svg className="spinner" viewBox="0 0 50 50">
+                    <circle cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
+                  </svg>
+                  Checking...
+                </>
+              ) : (
+                'Enter'
+              )}
             </button>
+          </form>
+
+          <div className="login-hint">
+            <svg className="hint-icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+            </svg>
+            <span>Password is required to access the journal.</span>
           </div>
-        </form>
+        </div>
       </div>
     </div>
   );
@@ -85,8 +116,13 @@ function LoginFormInner() {
 export default function LoginPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-gray-500">Loading...</div>
+      <div className="login-page">
+        <div className="login-background" />
+        <div className="login-container">
+          <div className="login-card">
+            <div className="loading-placeholder">Loading...</div>
+          </div>
+        </div>
       </div>
     }>
       <LoginFormInner />

@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import ClientLayout from "./client-layout";
 
 export const metadata: Metadata = {
   title: "BBQ Journal",
@@ -9,6 +10,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
   themeColor: "#0f172a",
 };
 
@@ -20,22 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        <header className="app-header">
-          <div className="container">
-            <a href="/" className="app-header__brand">
-              <span className="app-header__icon" aria-hidden>
-                🔥
-              </span>
-              <span className="app-header__title">BBQ Journal</span>
-            </a>
-          </div>
-        </header>
-        <main className="app-main">{children}</main>
-        <footer className="app-footer">
-          <div className="container">
-            <p>Built for tasty experiments and better next times.</p>
-          </div>
-        </footer>
+        <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
   );
