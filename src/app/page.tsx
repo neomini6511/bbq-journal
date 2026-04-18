@@ -37,6 +37,13 @@ export default function Home() {
                   <p className="recipe-card__meta">{recipe.yield}</p>
                   <h3 className="recipe-card__title">{recipe.title}</h3>
                   <p className="recipe-card__summary">{recipe.summary}</p>
+                  {recipe.tags && recipe.tags.length > 0 && (
+                    <div className="tag-row">
+                      {recipe.tags.map(tag => (
+                        <span key={tag} className="tag">{tag}</span>
+                      ))}
+                    </div>
+                  )}
                   <p className="recipe-card__cta">Open recipe →</p>
                 </div>
               </Link>
@@ -50,31 +57,36 @@ export default function Home() {
           <h2>Latest cook log</h2>
           <p className="eyebrow">Most recent session</p>
         </div>
-        {recipes[0]?.cookLogs[0] && (
-          <div className="cook-log-preview">
-            <div className="cook-log-preview__header">
-              <div>
-                <p className="cook-log-preview__date">
-                  {formatLongDate(recipes[0].cookLogs[0].date)}
-                </p>
-                <h3 className="cook-log-preview__title">{recipes[0].cookLogs[0].title}</h3>
+        {(() => {
+          const recipe = recipes[0];
+          const log = recipe?.cookLogs[0];
+          if (!log) return null;
+          return (
+            <div className="cook-log-preview">
+              <div className="cook-log-preview__header">
+                <div>
+                  <p className="cook-log-preview__date">
+                    {formatLongDate(log.date)}
+                  </p>
+                  <h3 className="cook-log-preview__title">{log.title}</h3>
+                </div>
+                <div className="cook-log-preview__score" aria-label={(log.recipeScores?.length ?? 0) > 1 ? "Scores" : "Score"}>
+                  {log.recipeScores?.[0]?.score.toFixed(1) || log.score.toFixed(1)}
+                </div>
               </div>
-              <div className="cook-log-preview__score" aria-label="Score">
-                {recipes[0].cookLogs[0].score.toFixed(1)}
-              </div>
+              <p className="cook-log-preview__summary">{log.summary}</p>
+              <p className="cook-log-preview__meta">
+                Finished around {log.finishedAt} · {log.servings}
+              </p>
+              <Link
+                href={`/recipes/${recipe.slug}/logs/${log.slug}`}
+                className="cook-log-preview__cta"
+              >
+                View full log →
+              </Link>
             </div>
-            <p className="cook-log-preview__summary">{recipes[0].cookLogs[0].summary}</p>
-            <p className="cook-log-preview__meta">
-              Finished around {recipes[0].cookLogs[0].finishedAt} · {recipes[0].cookLogs[0].servings}
-            </p>
-            <Link
-              href={`/recipes/${recipes[0].slug}/logs/${recipes[0].cookLogs[0].slug}`}
-              className="cook-log-preview__cta"
-            >
-              View full log →
-            </Link>
-          </div>
-        )}
+          );
+        })()}
       </section>
     </div>
   );

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getRecipes } from "@/data/recipes";
 import { SegmentedNav } from "@/components/segmented-nav";
 import { formatLongDate } from "@/lib/format";
+import SourcesSection from "./sources-section";
 
 export function generateStaticParams() {
   const recipes = getRecipes();
@@ -70,16 +71,8 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
         <p className="prose">{recipe.summary}</p>
 
         <div className="key-details" style={{ marginTop: "1.25rem" }}>
-          <div className="key-detail">
-            <span className="key-detail__label">Cut</span>
-            <span className="key-detail__value">{recipe.weight ?? "—"}</span>
-          </div>
-          {recipe.butcher && (
-            <div className="key-detail">
-              <span className="key-detail__label">Butcher</span>
-              <span className="key-detail__value">{recipe.butcher}</span>
-            </div>
-          )}
+
+
           <div className="key-detail">
             <span className="key-detail__label">Yield</span>
             <span className="key-detail__value">{recipe.yield}</span>
@@ -194,15 +187,7 @@ export default async function RecipePage({ params }: { params: Promise<{ slug: s
           <p className="eyebrow">Sources</p>
           <h2>References</h2>
         </div>
-        <ul className="source-list">
-          {recipe.sourceLinks.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} target="_blank" rel="noreferrer noopener">
-                {link.label}
-              </a>
-            </li>
-          ))}
-        </ul>
+        <SourcesSection sourceLinks={recipe.sourceLinks} />
       </section>
 
       {/* Cook logs list */}

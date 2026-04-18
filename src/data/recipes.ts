@@ -13,12 +13,20 @@ export type TimelineEntry = {
   images?: RecipeImage[];
 };
 
+export type RecipeScore = {
+  slug: string;
+  score: number;
+};
+
 export type CookLog = {
   slug: string;
   title: string;
   date: string;
   summary: string;
-  score: number;
+  score: number; // legacy single score, use recipeScores for multiple recipes
+  recipeScores?: RecipeScore[];
+  butcher?: string;
+  weight?: string;
   servings: string;
   duration: string;
   finishedAt: string;
@@ -31,8 +39,6 @@ export type Recipe = {
   slug: string;
   title: string;
   subtitle: string;
-  butcher?: string;
-  weight?: string;
   source: string;
   coverImage: RecipeImage;
   accentImages: RecipeImage[];
@@ -44,6 +50,7 @@ export type Recipe = {
   tastingNotes: string[];
   nextTimeNotes: string[];
   sourceLinks: RecipeLink[];
+  tags: string[];
   cookLogs: CookLog[];
 };
 
@@ -82,8 +89,6 @@ export const recipes: Recipe[] = [
     slug: "ninja-woodfire-beef-rib",
     title: "Beef Rib BBQ",
     subtitle: "Low & Slow on the Ninja Woodfire XL",
-    butcher: "Fleisch Discounter",
-    weight: "~1 kg",
     source: "Fleisch Discounter",
     coverImage: beefRibGallery[14], // finished plate with beef rib
     accentImages: [beefRibGallery[0], beefRibGallery[9], beefRibGallery[15]],
@@ -104,12 +109,11 @@ export const recipes: Recipe[] = [
     ],
     method: [
       "Apply the 50/50 vinegar-mustard binder evenly over the rib. Season immediately with coarse salt, then black pepper.",
-      "Ignite the Ninja Woodfire XL with pellets. Set to 65 °C for 1 h 20 m and wait for full ignition before loading the rib.",
-      "Place the rib directly on the grate with a probe in the thickest part (avoid the bone). Starting internal temperature: ~13 °C.",
-      "If pellets run low before the first stage ends, add more and re-ignite, but keep the temperature at 65 °C.",
-      "After 1 h 20 m total, flip the rib. Raise the grill to 120 °C. Switch the app to thermometer mode, target 75 °C internal, and immediately spritz all sides with the water-vinegar mix.",
+      "Ignite the Ninja Woodfire XL and set to 65 °C for 1 h 20 m. Wait for full ignition before loading the rib.",
+      "Place the rib directly on the grate with a probe in the thickest part (avoid the bone).",
+      "After 1 h 20 m total, flip the rib. Raise the grill to 120 °C. Switch the app to thermometer mode, target 75 °C internal, and immediately spritz all sides with the water-vinegar mix. This typically takes about 30 minutes.",
       "When the internal temperature reaches 75 °C and the bark is dark and set, remove the rib, spritz once more, wrap tightly in foil, and return to the grill at 150 °C.",
-      "Cook wrapped until probe-tender (about 1–2 hours more). The probe should glide in with no resistance — don't rely on a specific temperature.",
+      "Cook wrapped until probe-tender, about 1–2 hours (check every 30 minutes). The probe should glide in with no resistance.",
       "Rest the rib wrapped for at least 40 min — use this time to prepare a side dish. Expect the bark to darken noticeably during the rest.",
     ],
     tastingNotes: [
@@ -126,6 +130,7 @@ export const recipes: Recipe[] = [
       { label: "YouTube – Beef Rib guide (lxhidk0mAWg)", href: "https://youtu.be/lxhidk0mAWg?si=26iVTBTxf9sNhEv4" },
       { label: "YouTube – Beef Rib guide (nFVu_XwLrew)", href: "https://youtu.be/nFVu_XwLrew?si=5zpj3Dkp8M0RlA" },
     ],
+    tags: ["beef", "rib", "low-and-slow", "ninja-woodfire"],
     cookLogs: [
       {
         slug: "2026-04-18-first-cook",
@@ -134,13 +139,21 @@ export const recipes: Recipe[] = [
         summary:
           "Live-documented first run of the beef rib recipe on the Ninja Woodfire XL. Excellent result on the beef with a deep bark; clear lessons for refining the bark salt balance and the potato side.",
         score: 8.5,
+        recipeScores: [
+          { slug: "ninja-woodfire-beef-rib", score: 8.5 },
+          { slug: "air-fried-potatoes", score: 5 }
+        ],
+        butcher: "Fleisch Discounter",
+        weight: "~1 kg",
         servings: "2 people",
         duration: "~5 h 45 m (cook + eating + cleanup)",
         finishedAt: "15:45",
         highlights: [
+          "Beef rib: 8.5/10 – excellent bark, a touch salty",
+          "Potatoes: 5/10 – coating needs work, boil was too long",
           "~1 kg bone-in beef rib from Fleisch Discounter",
           "Cook started 10:00, finished eating around 15:45",
-          "Wrapped at 81 °C, finished to probe tenderness at ~95 °C",
+          "Wrapped at 81 °C, finished to probe tenderness",
           "~40 min foil rest while air frying potatoes",
         ],
         timeline: [
@@ -327,7 +340,7 @@ export const recipes: Recipe[] = [
     ],
     method: [
       "Cut potatoes into small pieces, wash, hold in salted warm water.",
-      "Boil 5–8 minutes until just tender, then drain.",
+      "Boil 3–5 minutes until just tender, then drain (avoid over‑boiling).",
       "Toss with country cuts seasoning, sticky rice powder, and oil.",
       "Air fry at 200 °C for 20–25 minutes, turning once, until golden and crisp.",
     ],
@@ -336,9 +349,10 @@ export const recipes: Recipe[] = [
     ],
     nextTimeNotes: [
       "Rework the coating; skip the sticky rice powder.",
-      "Shorten the cook slightly — they were in a touch too long.",
+      "Shorten the boil time — 3–5 minutes is enough.",
     ],
     sourceLinks: [],
+    tags: ["potato", "side", "air-fry", "ninja-woodfire"],
     cookLogs: [],
   },
 ];

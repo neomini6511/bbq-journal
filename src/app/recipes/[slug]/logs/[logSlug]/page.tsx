@@ -28,6 +28,12 @@ export default async function CookLogPage({
   const log = getCookLog(slug, logSlug);
   if (!recipe || !log) return notFound();
 
+  // Build score items: use recipeScores if available, else fallback to single score
+  const scoreItems = log.recipeScores?.map(rs => {
+    const r = recipes.find(r => r.slug === rs.slug);
+    return { slug: rs.slug, score: rs.score, title: r?.title || rs.slug };
+  }) || [{ slug: recipe.slug, score: log.score, title: recipe.title }];
+
   const navItems = [
     { href: `/recipes/${recipe.slug}`, label: "Overview" },
     { href: `/recipes/${recipe.slug}/logs`, label: "Cook logs", active: true },
@@ -54,8 +60,8 @@ export default async function CookLogPage({
             <p className="eyebrow">{formatLongDate(log.date)}</p>
             <h1 className="page-header__title">{log.title}</h1>
           </div>
-          <div className="score-badge" aria-label={`Score: ${log.score} out of 10`}>
-            {log.score.toFixed(1)}
+          <div className="score-badge" aria-label={`Score: ${scoreItems[0].score} out of 10`}>
+            {scoreItems[0].score.toFixed(1)}
             <span className="score-badge__label">/10</span>
           </div>
         </div>
@@ -70,10 +76,31 @@ export default async function CookLogPage({
           <h2>Session at a glance</h2>
         </div>
         <div className="stats-row">
-          <div className="stat">
-            <span className="stat__label">Score</span>
-            <span className="stat__value">{log.score.toFixed(1)}/10</span>
-          </div>
+          {scoreItems.length === 1 ? (
+            <div className="stat">
+              <span className="stat__label">Score</span>
+              <span className="stat__value">{scoreItems[0].score.toFixed(1)}/10</span>
+            </div>
+          ) : (
+            <div className="stat">
+              <span className="stat__label">Scores</span>
+              <span className="stat__value">
+                {scoreItems.map(item => `${item.title}: ${item.score.toFixed(1)}`).join(', ')}
+              </span>
+            </div>
+          )}
+          {log.butcher && (
+            <div className="stat">
+              <span className="stat__label">Butcher</span>
+              <span className="stat__value">{log.butcher}</span>
+            </div>
+          )}
+          {log.weight && (
+            <div className="stat">
+              <span className="stat__label">Weight</span>
+              <span className="stat__value">{log.weight}</span>
+            </div>
+          )}
           <div className="stat">
             <span className="stat__label">Servings</span>
             <span className="stat__value">{log.servings}</span>
