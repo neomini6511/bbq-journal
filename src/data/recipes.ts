@@ -71,6 +71,11 @@ const beefRibGallery: RecipeImage[] = [
   { src: "/images/2026-04-18-beef-rib/14.jpg", alt: "Wrapped rib at 13:30", caption: "Later tenderness check — getting very close to ready." },
   { src: "/images/2026-04-18-beef-rib/23.jpg", alt: "Finished plate – beef rib and potatoes", caption: "The finished plate: beef rib and golden potatoes." },
   { src: "/images/2026-04-18-beef-rib/24.jpg", alt: "Final meal close-up", caption: "Table-ready final shot of the first full cook." },
+  { src: "/images/2026-04-18-beef-rib/25.jpg", alt: "Casual meal scene with rib", caption: "Enjoying the rib outdoors with condiments." },
+  { src: "/images/2026-04-18-beef-rib/26.jpg", alt: "Plated barbecue meal", caption: "Final plate: beef rib, potato wedges, sauce, and mayo." },
+  { src: "/images/2026-04-18-beef-rib/27.jpg", alt: "Cooked rib with salsa verde", caption: "Rib after cooking, ready to be carved." },
+  { src: "/images/2026-04-18-beef-rib/28.jpg", alt: "Potato wedges breading", caption: "Coating potato wedges with seasoning mixture." },
+  { src: "/images/2026-04-18-beef-rib/29.jpg", alt: "Potato cutting prep", caption: "Cutting potatoes for the side dish." },
 ];
 
 const potatoGallery: RecipeImage[] = [
@@ -82,6 +87,8 @@ const potatoGallery: RecipeImage[] = [
   { src: "/images/2026-04-18-beef-rib/20.jpg", alt: "Grill reset before potato cook", caption: "Grill reset for the potato stage after the beef rested." },
   { src: "/images/2026-04-18-beef-rib/21.jpg", alt: "App showing 24:27 remaining for potatoes", caption: "Potatoes in, roughly 24 minutes left on the air fry cycle." },
   { src: "/images/2026-04-18-beef-rib/22.jpg", alt: "Potatoes spread across grill racks", caption: "Potatoes on the upper rack and lower grill plate." },
+  { src: "/images/2026-04-18-beef-rib/28.jpg", alt: "Potato wedges breading", caption: "Coating potato wedges with seasoning mixture." },
+  { src: "/images/2026-04-18-beef-rib/29.jpg", alt: "Potato cutting prep", caption: "Cutting potatoes for the side dish." },
 ];
 
 export const recipes: Recipe[] = [
@@ -90,7 +97,7 @@ export const recipes: Recipe[] = [
     title: "Beef Rib BBQ",
     subtitle: "Low & Slow on the Ninja Woodfire XL",
     source: "Fleisch Discounter",
-    coverImage: beefRibGallery[14], // finished plate with beef rib
+    coverImage: beefRibGallery[17], // plated barbecue meal with wedges and sauce
     accentImages: [beefRibGallery[0], beefRibGallery[9], beefRibGallery[15]],
     summary:
       "A first-run bone-in beef rib on the Ninja Woodfire XL, tracked live from seasoning through cleanup. The result was excellent — deep bark, strong smoke profile, and clear lessons for the next iteration.",

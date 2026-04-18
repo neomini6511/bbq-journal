@@ -3,7 +3,7 @@ import Link from "next/link";
 import { getRecipes, getCookLog } from "@/data/recipes";
 import { SegmentedNav } from "@/components/segmented-nav";
 import { Timeline } from "@/components/timeline";
-import { ImageMosaic } from "@/components/image-mosaic";
+import { LightboxGallery } from "@/components/lightbox-gallery";
 import { formatLongDate } from "@/lib/format";
 
 export function generateStaticParams() {
@@ -132,7 +132,7 @@ export default async function CookLogPage({
       </section>
 
       {/* Gallery: hero + any images not already shown in the timeline */}
-      <ImageMosaic images={displayGallery} />
+      <LightboxGallery images={displayGallery} />
 
       <div className="section-card">
         <Link href={`/recipes/${recipe.slug}/logs`} className="back-link">
