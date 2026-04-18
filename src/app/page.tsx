@@ -1,65 +1,81 @@
+import Link from "next/link";
 import Image from "next/image";
+import { getRecipes } from "@/data/recipes";
+import { formatLongDate } from "@/lib/format";
 
 export default function Home() {
+  const recipes = getRecipes();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className="container">
+      <section className="hero">
+        <h1 className="hero__title">Cooks, captured.</h1>
+        <p className="hero__subtitle">
+          A journal of what we made, what worked, and what we will tweak next time.
+        </p>
+      </section>
+
+      <section className="feed">
+        <h2 className="feed__heading">Recent recipes</h2>
+        <div className="recipe-grid">
+          {recipes.map((recipe) => (
+            <article key={recipe.slug} className="recipe-card">
+              <Link href={`/recipes/${recipe.slug}`} className="recipe-card__link">
+                <div className="recipe-card__media">
+                  <div className="image-frame image-frame--cover">
+                    <Image
+                      src={recipe.coverImage.src}
+                      alt={recipe.coverImage.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="image-frame__img"
+                      priority
+                    />
+                  </div>
+                </div>
+                <div className="recipe-card__content">
+                  <p className="recipe-card__meta">{recipe.yield}</p>
+                  <h3 className="recipe-card__title">{recipe.title}</h3>
+                  <p className="recipe-card__summary">{recipe.summary}</p>
+                  <p className="recipe-card__cta">Open recipe →</p>
+                </div>
+              </Link>
+            </article>
+          ))}
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className="section-card">
+        <div className="section-card__header">
+          <h2>Latest cook log</h2>
+          <p className="eyebrow">Most recent session</p>
         </div>
-      </main>
+        {recipes[0]?.cookLogs[0] && (
+          <div className="cook-log-preview">
+            <div className="cook-log-preview__header">
+              <div>
+                <p className="cook-log-preview__date">
+                  {formatLongDate(recipes[0].cookLogs[0].date)}
+                </p>
+                <h3 className="cook-log-preview__title">{recipes[0].cookLogs[0].title}</h3>
+              </div>
+              <div className="cook-log-preview__score" aria-label="Score">
+                {recipes[0].cookLogs[0].score.toFixed(1)}
+              </div>
+            </div>
+            <p className="cook-log-preview__summary">{recipes[0].cookLogs[0].summary}</p>
+            <p className="cook-log-preview__meta">
+              Finished around {recipes[0].cookLogs[0].finishedAt} · {recipes[0].cookLogs[0].servings}
+            </p>
+            <Link
+              href={`/recipes/${recipes[0].slug}/logs/${recipes[0].cookLogs[0].slug}`}
+              className="cook-log-preview__cta"
+            >
+              View full log →
+            </Link>
+          </div>
+        )}
+      </section>
     </div>
   );
 }
