@@ -62,6 +62,11 @@ const beefRibGallery: RecipeImage[] = [
   { src: "/images/2026-04-18-beef-rib/12.jpg", alt: "App at 12:59 – 3:02 remaining, 95 °C target", caption: "Wrapped phase; target moved to 95 °C for tenderness." },
   { src: "/images/2026-04-18-beef-rib/13.jpg", alt: "Wrapped rib in foil at 12:59", caption: "Rib in foil, bark very dark, meat pulling back from the bone." },
   { src: "/images/2026-04-18-beef-rib/14.jpg", alt: "Wrapped rib at 13:30", caption: "Later tenderness check — getting very close to ready." },
+  { src: "/images/2026-04-18-beef-rib/23.jpg", alt: "Finished plate – beef rib and potatoes", caption: "The finished plate: beef rib and golden potatoes." },
+  { src: "/images/2026-04-18-beef-rib/24.jpg", alt: "Final meal close-up", caption: "Table-ready final shot of the first full cook." },
+];
+
+const potatoGallery: RecipeImage[] = [
   { src: "/images/2026-04-18-beef-rib/15.jpg", alt: "Raw potatoes, cut into small pieces", caption: "Potatoes cut into small pieces for the side dish." },
   { src: "/images/2026-04-18-beef-rib/16.jpg", alt: "Potatoes in salted water", caption: "Potatoes washed and set in salted warm water before boiling." },
   { src: "/images/2026-04-18-beef-rib/17.jpg", alt: "Potatoes boiling", caption: "Potatoes at the boil before the air fry finish." },
@@ -70,8 +75,6 @@ const beefRibGallery: RecipeImage[] = [
   { src: "/images/2026-04-18-beef-rib/20.jpg", alt: "Grill reset before potato cook", caption: "Grill reset for the potato stage after the beef rested." },
   { src: "/images/2026-04-18-beef-rib/21.jpg", alt: "App showing 24:27 remaining for potatoes", caption: "Potatoes in, roughly 24 minutes left on the air fry cycle." },
   { src: "/images/2026-04-18-beef-rib/22.jpg", alt: "Potatoes spread across grill racks", caption: "Potatoes on the upper rack and lower grill plate." },
-  { src: "/images/2026-04-18-beef-rib/23.jpg", alt: "Finished plate – beef rib and potatoes", caption: "The finished plate: beef rib and golden potatoes." },
-  { src: "/images/2026-04-18-beef-rib/24.jpg", alt: "Final meal close-up", caption: "Table-ready final shot of the first full cook." },
 ];
 
 export const recipes: Recipe[] = [
@@ -82,8 +85,8 @@ export const recipes: Recipe[] = [
     butcher: "Fleisch Discounter",
     weight: "~1 kg",
     source: "Fleisch Discounter",
-    coverImage: beefRibGallery[22], // 23.jpg – finished plate
-    accentImages: [beefRibGallery[0], beefRibGallery[9], beefRibGallery[23]],
+    coverImage: beefRibGallery[14], // finished plate with beef rib
+    accentImages: [beefRibGallery[0], beefRibGallery[9], beefRibGallery[15]],
     summary:
       "A first-run bone-in beef rib on the Ninja Woodfire XL, tracked live from seasoning through cleanup. The result was excellent — deep bark, strong smoke profile, and clear lessons for the next iteration.",
     yield: "Serves 2 generously",
@@ -92,42 +95,31 @@ export const recipes: Recipe[] = [
       "Wood pellets",
       "Temperature probe",
       "Aluminium foil",
-      "Pot for parboiling",
     ],
     ingredients: [
       "1 kg bone-in beef rib (Fleisch Discounter)",
       "Binder: apple cider vinegar + yellow mustard, 50/50",
       "Rub: coarse salt + black pepper, 50/50 — salt first, then pepper",
       "Spritz: water + vinegar, 50/50",
-      "0.8 kg potatoes, cut small",
-      "Salt (for potato water)",
-      "2 tbsp country cuts seasoning",
-      "2 tbsp sticky rice powder",
-      "1 tbsp oil",
     ],
     method: [
       "Apply the 50/50 vinegar-mustard binder evenly over the rib. Season immediately with coarse salt, then black pepper.",
       "Ignite the Ninja Woodfire XL with pellets. Set to 65 °C for 1 h 20 m and wait for full ignition before loading the rib.",
       "Place the rib directly on the grate with a probe in the thickest part (avoid the bone). Starting internal temperature: ~13 °C.",
-      "At 50 min, refill pellets and re-ignite if needed. Raise to 80 °C for the remaining 20 minutes.",
-      "After 1 h 20 m total, flip the rib. Raise the grill to 120 °C. Switch the app to thermometer mode, target 75 °C internal.",
-      "About 10 minutes later, spritz all sides with the water-vinegar mix and close the lid.",
-      "When the internal temperature reaches ~81 °C and the bark is dark and set, remove the rib, spritz once more, wrap tightly in foil, and return to the grill at 150 °C.",
-      "Cook wrapped until probe-tender, checking every 30 min once the probe reads ~95 °C. The probe should glide in with no resistance.",
-      "Rest the rib wrapped for at least 40 min — use this time to prep and cook the side. Expect the bark to darken noticeably during the rest.",
-      "For the potatoes: cut small, wash, hold in salted warm water, boil 5–8 min, drain, toss in seasoning and oil, then air fry at 200 °C for 20–25 min, turning once.",
+      "If pellets run low before the first stage ends, add more and re-ignite, but keep the temperature at 65 °C.",
+      "After 1 h 20 m total, flip the rib. Raise the grill to 120 °C. Switch the app to thermometer mode, target 75 °C internal, and immediately spritz all sides with the water-vinegar mix.",
+      "When the internal temperature reaches 75 °C and the bark is dark and set, remove the rib, spritz once more, wrap tightly in foil, and return to the grill at 150 °C.",
+      "Cook wrapped until probe-tender (about 1–2 hours more). The probe should glide in with no resistance — don't rely on a specific temperature.",
+      "Rest the rib wrapped for at least 40 min — use this time to prepare a side dish. Expect the bark to darken noticeably during the rest.",
     ],
     tastingNotes: [
       "Beef scored 8.5/10 — enough for two people and genuinely excellent.",
       "Bark was quite dark and a touch salty, but the overall flavour was still very good.",
-      "Potatoes stayed crunchy but the sticky rice powder coating wasn't the right choice.",
     ],
     nextTimeNotes: [
       "Reduce salt slightly on the bark — the exterior ended up a bit too salty.",
       "Probe carefully through foil. A hole was made this time and juice leaked out.",
       "Expect significant darkening during a long foil rest — don't judge colour at pull time.",
-      "Rework the potato coating; skip the sticky rice powder.",
-      "Shorten the potato cook slightly — they were in a touch too long.",
     ],
     sourceLinks: [
       { label: "Dad Got This: Woodfire Smoked Beef Dino Ribs", href: "https://dadgotthis.com/woodfire-smoked-beef-dino-ribs/" },
@@ -248,16 +240,18 @@ export const recipes: Recipe[] = [
             details: [
               "0.8 kg potatoes cut into small pieces, washed, held in salted warm water.",
               "Plan: boil 5–8 min, then air fry.",
+              "See Air‑fried Potatoes recipe for method.",
             ],
-            images: [beefRibGallery[14], beefRibGallery[15], beefRibGallery[16]], // 15, 16, 17
+            images: [potatoGallery[0], potatoGallery[1], potatoGallery[2]],
           },
           {
             time: "13:46",
             title: "Potatoes seasoned",
             details: [
               "2 tbsp country cuts seasoning, 2 tbsp sticky rice powder, 1 tbsp oil.",
+              "See Air‑fried Potatoes recipe for details.",
             ],
-            images: [beefRibGallery[17]], // 18
+            images: [potatoGallery[3]],
           },
           {
             time: "13:50",
@@ -270,8 +264,9 @@ export const recipes: Recipe[] = [
             details: [
               "Old pellets cleared out.",
               "New air fry cycle: 200 °C for 25 min.",
+              "See Air‑fried Potatoes recipe for details.",
             ],
-            images: [beefRibGallery[18], beefRibGallery[19]], // 19, 20
+            images: [potatoGallery[4], potatoGallery[5]],
           },
           {
             time: "14:10",
@@ -279,13 +274,17 @@ export const recipes: Recipe[] = [
             details: [
               "Potatoes placed across the upper rack and lower grill plate.",
               "App showed 24 min 27 sec remaining.",
+              "See Air‑fried Potatoes recipe for details.",
             ],
-            images: [beefRibGallery[20], beefRibGallery[21]], // 21, 22
+            images: [potatoGallery[6], potatoGallery[7]],
           },
           {
             time: "14:23",
             title: "Potatoes turned",
-            details: ["Potatoes moved for more even cooking with ~12 min left."],
+            details: [
+              "Potatoes moved for more even cooking with ~12 min left.",
+              "See Air‑fried Potatoes recipe for details.",
+            ],
           },
           {
             time: "14:30",
@@ -293,7 +292,7 @@ export const recipes: Recipe[] = [
             details: [
               "Potatoes out. Beef unwrapped after a ~40 min rest. Meal ready.",
             ],
-            images: [beefRibGallery[22], beefRibGallery[23]], // 23, 24
+            images: [beefRibGallery[13], beefRibGallery[14]],
           },
           {
             time: "15:45",
@@ -304,6 +303,43 @@ export const recipes: Recipe[] = [
         gallery: beefRibGallery,
       },
     ],
+  },
+  {
+    slug: "air-fried-potatoes",
+    title: "Air‑fried Potatoes",
+    subtitle: "Crispy side for grilled mains",
+    source: "Ninja Woodfire XL",
+    coverImage: potatoGallery[0],
+    accentImages: [potatoGallery[3], potatoGallery[7]],
+    summary: "Par‑boiled then air‑fried potatoes, seasoned with country cuts and sticky rice powder. They stayed crunchy but the coating needs refinement.",
+    yield: "Serves 2 as a side",
+    equipment: [
+      "Ninja Woodfire XL",
+      "Pot for boiling",
+      "Mixing bowl",
+    ],
+    ingredients: [
+      "0.8 kg potatoes, cut small",
+      "Salt for water",
+      "2 tbsp country cuts seasoning",
+      "2 tbsp sticky rice powder",
+      "1 tbsp oil",
+    ],
+    method: [
+      "Cut potatoes into small pieces, wash, hold in salted warm water.",
+      "Boil 5–8 minutes until just tender, then drain.",
+      "Toss with country cuts seasoning, sticky rice powder, and oil.",
+      "Air fry at 200 °C for 20–25 minutes, turning once, until golden and crisp.",
+    ],
+    tastingNotes: [
+      "Potatoes stayed crunchy but the sticky rice powder coating wasn't the right choice.",
+    ],
+    nextTimeNotes: [
+      "Rework the coating; skip the sticky rice powder.",
+      "Shorten the cook slightly — they were in a touch too long.",
+    ],
+    sourceLinks: [],
+    cookLogs: [],
   },
 ];
 
