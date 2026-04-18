@@ -6,13 +6,23 @@ export function middleware(request: NextRequest) {
   // Allow access to login page and API login endpoint
   const path = request.nextUrl.pathname;
   if (path.startsWith('/api/login') || path === '/login') {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('[middleware] Allowing access to', path);
+    }
     return NextResponse.next();
   }
 
   // Check for auth cookie
   const authCookie = request.cookies.get('bbq-journal-auth');
   if (authCookie?.value === '1') {
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('[middleware] Auth cookie found, allowing', path);
+    }
     return NextResponse.next();
+  }
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.log('[middleware] No auth cookie, redirecting to login from', path);
   }
 
   // Redirect to login page
