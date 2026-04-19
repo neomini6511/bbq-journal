@@ -91,6 +91,19 @@ const potatoGallery: RecipeImage[] = [
   { src: "/images/2026-04-18-beef-rib/29.jpg", alt: "Potato cutting prep", caption: "Cutting potatoes for the side dish." },
 ];
 
+const steakGallery: RecipeImage[] = [
+  { src: "/images/2026-04-19-steak/01.jpg", alt: "Raw steaks before seasoning", caption: "Two steaks ready for seasoning." },
+  { src: "/images/2026-04-19-steak/02.jpg", alt: "Seasoned steaks", caption: "Salt and pepper applied." },
+  { src: "/images/2026-04-19-steak/03.jpg", alt: "Steaks on hot grill", caption: "Steaks placed on the preheated grate." },
+  { src: "/images/2026-04-19-steak/04.jpg", alt: "Cooking steaks", caption: "During the cook, smoke rising." },
+  { src: "/images/2026-04-19-steak/05.jpg", alt: "Flipping steaks", caption: "Turning steaks after a few minutes." },
+  { src: "/images/2026-04-19-steak/06.jpg", alt: "Cooked steaks off grill", caption: "Steaks removed after 6–8 minutes total." },
+  { src: "/images/2026-04-19-steak/07.jpg", alt: "Plated steaks with sides", caption: "Served with accompaniments." },
+  { src: "/images/2026-04-19-steak/08.jpg", alt: "Crust close-up", caption: "Detail of the steak crust." },
+  { src: "/images/2026-04-19-steak/09.jpg", alt: "Side dish", caption: "Accompanying side dish." },
+  { src: "/images/2026-04-19-steak/10.jpg", alt: "Final meal", caption: "Table shot of the finished meal." },
+];
+
 export const recipes: Recipe[] = [
   {
     slug: "ninja-woodfire-beef-rib",
@@ -361,6 +374,94 @@ export const recipes: Recipe[] = [
     sourceLinks: [],
     tags: ["potato", "side", "air-fry", "ninja-woodfire"],
     cookLogs: [],
+  },
+  {
+    slug: "ninja-woodfire-steak",
+    title: "Steak on Ninja Woodfire XL",
+    subtitle: "High‑heat direct grilling",
+    source: "Unknown butcher",
+    coverImage: steakGallery[5],
+    accentImages: [steakGallery[0], steakGallery[2], steakGallery[8]],
+    summary: "Quick weeknight steak cooked directly on high heat. Simple salt‑and‑pepper seasoning, 6–8 minutes total.",
+    yield: "Serves 2",
+    equipment: ["Ninja Woodfire XL grill", "Wood pellets"],
+    ingredients: [
+      "Two steaks (cut unknown, ~1.5–2 cm thick)",
+      "Coarse salt",
+      "Black pepper",
+    ],
+    method: [
+      "Season steaks generously with salt and pepper on both sides.",
+      "Preheat the grill on high (maximum temperature).",
+      "Place steaks directly on the grate. Cook 3–4 minutes per side for thinner steaks, 4–5 minutes per side for thicker ones.",
+      "Remove when internal temperature reaches desired doneness (or rely on timing and visual cues for thin steaks).",
+      "Rest briefly before serving.",
+    ],
+    tastingNotes: [
+      "Steaks scored 8/10 — turned out great, juicy with a good crust.",
+    ],
+    nextTimeNotes: [
+      "For thin steaks (under 2 cm), thermometer readings are unreliable; better to rely on timing and visual cues.",
+      "High‑heat direct grilling works fine for quick weeknight steak.",
+      "Experiment with reverse sear for thicker cuts.",
+    ],
+    sourceLinks: [],
+    tags: ["beef", "steak", "high-heat", "ninja-woodfire"],
+    cookLogs: [
+      {
+        slug: "2026-04-19-steak",
+        title: "Quick high‑heat steak",
+        date: "2026-04-19",
+        summary: "Simple steak cook on the Ninja Woodfire XL using maximum heat. Relied on timing rather than thermometer for thin steaks.",
+        score: 8,
+        servings: "2 people",
+        duration: "~15 min (cook + rest)",
+        finishedAt: "18:30",
+        highlights: [
+          "Steaks scored 8/10 — turned out great.",
+          "Seasoning: just salt and pepper.",
+          "Cook time: 6 minutes for small steak, 8 minutes for larger one.",
+          "Thermometer unreliable on thin steaks; timing used instead.",
+        ],
+        timeline: [
+          {
+            time: "18:15",
+            title: "Steaks seasoned and loaded",
+            details: [
+              "Steaks seasoned with salt and pepper.",
+              "Grill preheated on high.",
+              "Steaks placed directly on the grate.",
+            ],
+            images: [steakGallery[0], steakGallery[1]],
+          },
+          {
+            time: "18:20",
+            title: "Flipped",
+            details: [
+              "Smaller steak flipped after about 3–4 minutes.",
+              "Larger steak flipped after about 4–5 minutes.",
+            ],
+            images: [steakGallery[4]],
+          },
+          {
+            time: "18:25",
+            title: "Removed",
+            details: [
+              "Smaller steak removed after about 6 minutes total.",
+              "Larger steak removed after about 8 minutes total.",
+            ],
+            images: [steakGallery[5]],
+          },
+          {
+            time: "18:30",
+            title: "Served",
+            details: ["Steaks rested briefly, then served."],
+            images: [steakGallery[6], steakGallery[7]],
+          },
+        ],
+        gallery: steakGallery,
+      },
+    ],
   },
 ];
 
